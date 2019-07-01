@@ -1,15 +1,28 @@
 # Data sorting and filtering
 
-Read the 3 input files reports.json, reports.csv, reports.xml and output a combined CSV file with the following characteristics:
+## Requirements
+* maven
+* java 8+
 
-- The same column order and formatting as reports.csv
-- All report records with packets-serviced equal to zero should be excluded
-- records should be sorted by request-time in ascending order
+This is a maven project, all the dependencies are specified in pom.xml file.
 
-Additionally, the application should print a summary showing the number of records in the output file associated with each service-guid.
+## Run the project
+```Bash
+maven package
+mvn exec:java -Dexec.mainClass="com.yunlei.Main" -Dexec.args="<dest filename> <log filenames>"
+// or just run
+mvn exec:java -Dexec.mainClass="com.yunlei.Main"
+```
+If the dest filename and log filenames are not provided, the program will use example files under `./data` and create an
+`out.csv` in current folder.
 
-Please provide source, documentation on how to run the program and an explanation on why you chose the tools/libraries used.
+## Scalability
 
-## Submission
+This code is designed to be easy to extend if new file reader needed or new file writer need.
 
-You may fork this repo, commit your work and let us know of your project's location, or you may email us your project files in a zip file.
+### New reader
+Extend the LogEntriesReader interface, and config the mappping from `file format` to `reader class` in ./config/config.xml.
+The program will be able to pick up the new reader.
+
+### New writer
+Extend the LogWriter interface and register the new writer class in ./config/config.xml the program will pick up the new writer.

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <logReadFactory>
+        <readers>
+            <reader>
+                <format>csv</format>
+                <class>com.yunlei.CsvLogReader</class>
+            </reader>
+            <reader>
+                <format>json</format>
+                <class>com.yunlei.JsonLogReader</class>
+            </reader>
+            <reader>
+                <format>xml</format>
+                <class>com.yunlei.XmlLogReader</class>
+            </reader>
+        </readers>
+    </logReadFactory>
+
+    <logWriterFactory>
+        <class>com.yunlei.CsvLogWriter</class>
+    </logWriterFactory>
+</config>
